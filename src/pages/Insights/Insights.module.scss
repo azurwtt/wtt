@@ -1,0 +1,42 @@
+.container {
+  padding: 0px 24px;
+}
+
+.section {
+  text-align: center;
+}
+
+.video {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  padding: 0px 16px;
+  border: none;
+}
+
+.description {
+  padding: 16px 60px;
+  text-align: justify;
+  color: var(--color-grey);
+  p {
+    margin-bottom: 24px;
+    max-width: 1000px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .description {
+    padding: 16px 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .video {
+    padding: 0px;
+  }
+  .description {
+    padding: 0px;
+    font-size: 14px;
+  }
+}

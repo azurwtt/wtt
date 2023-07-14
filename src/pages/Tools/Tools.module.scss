@@ -1,0 +1,223 @@
+.container {
+  padding: 0px 24px;
+}
+.section {
+  padding: 0px 30px;
+}
+.para {
+  font-size: 18px;
+}
+.prompt {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+.list {
+  padding: 24px 10px 24px 50px;
+}
+.list li {
+  list-style: square;
+  padding: 10px;
+}
+.listExtra {
+  color: var(--color-grey);
+}
+
+.promoSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 0px;
+
+  .image {
+    width: 90%;
+    max-width: 450px;
+    margin-bottom: 24px;
+  }
+
+  .heading {
+    font-size: 40px;
+    font-weight: bold;
+    color: var(--color-primary);
+  }
+
+  .helperText {
+    font-size: 24px;
+    color: var(--color-grey);
+  }
+}
+
+.toolsTableSection {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.scroll {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.logo {
+  width: 100px;
+}
+
+.table {
+  --color-blue: #2e75b5;
+  --color-lightBlue: #79a3df;
+  --color-darkBlue: #005fb4;
+  --color-green: #00b050;
+  --color-lightGreen: #a8d08d;
+  --color-orange: #ed7d31;
+  --color-yellow: #ffc000;
+
+  width: 100%;
+  border-radius: 10px;
+  border-spacing: 0px;
+  overflow: hidden;
+  border: 2px solid var(--color-darkBlue);
+  font-size: 14px;
+  color: var(--color-grey);
+  margin-bottom: 6px;
+
+  th,
+  td {
+    border: 2px solid var(--color-darkBlue);
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 10px;
+
+    a {
+      color: var(--color-white);
+    }
+  }
+
+  tbody {
+    color: var(--color-black);
+    .tableData {
+      font-size: 10px;
+      padding: 2px 8px;
+      min-width: 300px;
+    }
+  }
+}
+
+.tableRow {
+  height: 24px;
+  background-color: var(--color-white);
+
+  &:nth-child(even) {
+    background-color: #c3d6f0;
+  }
+}
+
+.tableData {
+  padding: 8px 24px;
+  height: inherit;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header {
+  color: var(--color-white);
+  font-weight: 700;
+
+  .heading {
+    font-size: 14px;
+    height: 50px;
+    justify-content: center;
+
+    .transitionDelay {
+      transition-duration: 0.3s;
+    }
+    .rotate {
+      transform: rotate(-180deg);
+    }
+  }
+
+  .subHeading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0px;
+    padding: 8px;
+    font-size: 12px;
+    transition: all 0.2s;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(0.8);
+    }
+
+    .price {
+      font-size: 10px;
+      min-width: 100px;
+    }
+  }
+}
+
+.levels {
+  background-color: var(--color-blue);
+}
+
+.backTest {
+  background-color: var(--color-lightBlue);
+}
+
+.alerts {
+  background-color: var(--color-green);
+}
+
+.robot {
+  background-color: var(--color-orange);
+}
+
+.yellow {
+  background-color: var(--color-yellow);
+}
+
+.lightGreen {
+  background-color: var(--color-lightGreen);
+}
+
+.toolCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  row-gap: 24px;
+}
+
+@media only screen and (max-width: 1200px) {
+  .toolCards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .toolCards {
+    grid-template-columns: 1fr;
+  }
+  .table {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .section {
+    padding: 0px 4px;
+  }
+  .tableData {
+    padding: 8px 12px;
+  }
+  .promoSection {
+    .heading {
+      font-size: 32px;
+    }
+    .helperText {
+      font-size: 18px;
+    }
+  }
+}

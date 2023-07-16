@@ -16,16 +16,22 @@ export interface NotesConfig {
   content: Notes[];
 }
 
-export interface Tools {
-  title: string;
-  price: number;
-  image: string;
-  alt: string;
-  planId: string;
+export interface PlanId {
+  [noOfIntruments: string]: string;
 }
+
+export interface ToolType {
+  className: string;
+  price: string;
+  planId: PlanId;
+}
+
+export interface ToolInfo {
+  [type: string]: ToolType | string;
+}
+
 export interface ToolsConfig {
-  sectionHeading: string;
-  content: Tools[];
+  [toolName: string]: ToolInfo;
 }
 
 export interface InsightsConfig {

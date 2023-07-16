@@ -6,6 +6,8 @@ import { Page } from "src/components/Page/Page";
 import { Link } from "react-router-dom";
 import logo from "src/assets/images/logo_azur.png";
 import scrollRight from "src/assets/images/scrollRightBlue.png";
+import { toolsConfig } from "src/config/toolsConfig";
+import { ToolType } from "src/types";
 
 export const Tools: FC = () => {
   return (
@@ -48,89 +50,30 @@ export const Tools: FC = () => {
                       <img className={styles.logo} src={logo} alt="logo" />
                     </div>
                   </th>
-                  <th colSpan={5} className={styles.levels}>
-                    <div className={styles.tableData + " " + styles.heading}>AZUR LEVELS</div>
-                  </th>
-                  <th colSpan={2} className={styles.alerts}>
-                    <div className={styles.tableData + " " + styles.heading}>AZUR ALERTS</div>
-                  </th>
-                  <th colSpan={2} className={styles.robot}>
-                    <div className={styles.tableData + " " + styles.heading}>AZUR ROBOT (AUTO-TRADER)</div>
-                  </th>
+                  {Object.keys(toolsConfig).map((tool) => (
+                    <th
+                      colSpan={Object.keys(toolsConfig[tool]).filter((tool) => tool !== "className").length}
+                      className={styles[toolsConfig[tool].className as string]}
+                    >
+                      <div className={styles.tableData + " " + styles.heading}>{tool}</div>
+                    </th>
+                  ))}
                 </tr>
                 <tr className={styles.header}>
-                  <th className={styles.levels}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>BASIC</div>
-                        <div className={styles.price}>(from $25/mth)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.levels}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>ADVANCED</div>
-                        <div className={styles.price}>(from $50/mth)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.levels}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>EXPERT</div>
-                        <div className={styles.price}>(from $75/mth)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.backTest}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>BACK TEST ADVANCED</div>
-                        <div className={styles.price}>(from $100/life)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.backTest}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>BACK TEST EXPERT</div>
-                        <div className={styles.price}>(from $150/life)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.alerts}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>ADVANCED</div>
-                        <div className={styles.price}>(from $200/mth)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.alerts}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>EXPERT</div>
-                        <div className={styles.price}>(from $300/mth)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.robot}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>ADVANCED</div>
-                        <div className={styles.price}>(TBD)</div>
-                      </div>
-                    </Link>
-                  </th>
-                  <th className={styles.robot}>
-                    <Link to={`/subscribe/P-0FF265046G4913356MSA6IUA`}>
-                      <div className={styles.tableData + " " + styles.subHeading}>
-                        <div className={styles.type}>EXPERT</div>
-                        <div className={styles.price}>(TBD)</div>
-                      </div>
-                    </Link>
-                  </th>
+                  {Object.keys(toolsConfig).map((tool) =>
+                    Object.keys(toolsConfig[tool])
+                      .filter((type) => type !== "className")
+                      .map((type) => (
+                        <th className={styles[(toolsConfig[tool][type] as ToolType).className]}>
+                          <Link to={`/subscribe?toolName=${tool}&type=${type}`}>
+                            <div className={styles.tableData + " " + styles.subHeading}>
+                              <div className={styles.type}>{type}</div>
+                              <div className={styles.price}>({(toolsConfig[tool][type] as ToolType).price})</div>
+                            </div>
+                          </Link>
+                        </th>
+                      ))
+                  )}
                 </tr>
               </thead>
               <tbody>

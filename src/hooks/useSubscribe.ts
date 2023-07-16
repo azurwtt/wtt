@@ -1,9 +1,10 @@
 import { FormEvent, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { TradingPlatforms } from "src/types";
+import { useSearchParams } from "react-router-dom";
+import { toolsConfig } from "src/config/toolsConfig";
+import { ToolType, TradingPlatforms } from "src/types";
 
 export const useSubscribe = () => {
-  const { planId } = useParams();
+  const [searchParams] = useSearchParams();
   const [openModal, setOpenModal] = useState(false);
 
   const [data, setData] = useState({
@@ -59,9 +60,17 @@ export const useSubscribe = () => {
       lastName: user.lastName || "",
       email: user.email || "",
       country: user.county || "",
-      planId: planId || "",
     }));
-  }, [planId]);
+  }, []);
+
+  useEffect(() => {
+    setData((prevData) => ({
+      ...prevData,
+      planId: (toolsConfig[searchParams.get("toolName") || ""][searchParams.get("type") || ""] as ToolType).planId[
+        data.instruments
+      ],
+    }));
+  }, [searchParams, data.instruments]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();

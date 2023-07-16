@@ -10,6 +10,7 @@ import gateways from "src/assets/images/payment_gatways-logos.png";
 import { LabeledCheckBox } from "src/components/LabeledCheckBox/LabeledCheckBox";
 import { TradingPlatforms } from "src/types";
 import { useSubscribe } from "src/hooks/useSubscribe";
+import { LabeledRadioButton } from "src/components/LabeledRadioButton/LabeledRadioButton";
 
 export const Subscribe: FC = () => {
   const { data, setData, error, setError, handleSubmit, openModal, setOpenModal } = useSubscribe();
@@ -217,74 +218,239 @@ export const Subscribe: FC = () => {
                 }))
               }
             />
+            <LabeledInput
+              label="Username"
+              placeholder="Enter username..."
+              value={data.username}
+              onChange={(e) =>
+                setData((prevData) => ({
+                  ...prevData,
+                  username: e.target.value,
+                }))
+              }
+            />
+
+            <div></div>
+
             <div className={styles.toolsOption}>
-              <p className={styles.description}>Choose a trading platform:</p>
-              {error.platform && <p className={styles.error}>{error.platform}</p>}
+              <p className={styles.description}>Primary trading platform:</p>
               <LabeledCheckBox
                 className={styles.radioButton}
-                name="trading_platform"
+                name="primary_trading_platform"
                 label={TradingPlatforms.TradingView}
-                checked={data.platform[TradingPlatforms.TradingView]}
+                checked={data.primaryTradingPlatform[TradingPlatforms.TradingView]}
                 onChange={(e) => {
                   setData((prevData) => ({
                     ...prevData,
-                    platform: {
-                      ...prevData.platform,
-                      [TradingPlatforms.TradingView]: !prevData.platform[TradingPlatforms.TradingView],
+                    primaryTradingPlatform: {
+                      ...prevData.primaryTradingPlatform,
+                      [TradingPlatforms.TradingView]: !prevData.primaryTradingPlatform[TradingPlatforms.TradingView],
                     },
-                  }));
-                  setError((prev) => ({
-                    ...prev,
-                    platform: "",
                   }));
                 }}
               />
               <LabeledCheckBox
                 className={styles.radioButton}
-                name="trading_platform"
+                name="primary_trading_platform"
                 label={TradingPlatforms.ThinkOrSwim}
-                checked={data.platform[TradingPlatforms.ThinkOrSwim]}
+                checked={data.primaryTradingPlatform[TradingPlatforms.ThinkOrSwim]}
                 onChange={(e) =>
                   setData((prevData) => ({
                     ...prevData,
-                    platform: {
-                      ...prevData.platform,
-                      [TradingPlatforms.ThinkOrSwim]: !prevData.platform[TradingPlatforms.ThinkOrSwim],
+                    primaryTradingPlatform: {
+                      ...prevData.primaryTradingPlatform,
+                      [TradingPlatforms.ThinkOrSwim]: !prevData.primaryTradingPlatform[TradingPlatforms.ThinkOrSwim],
                     },
                   }))
                 }
               />
               <LabeledCheckBox
                 className={styles.radioButton}
-                name="trading_platform"
+                name="primary_trading_platform"
                 label={TradingPlatforms.NinjaTraders}
-                checked={data.platform[TradingPlatforms.NinjaTraders]}
+                checked={data.primaryTradingPlatform[TradingPlatforms.NinjaTraders]}
                 onChange={(e) =>
                   setData((prevData) => ({
                     ...prevData,
-                    platform: {
-                      ...prevData.platform,
-                      [TradingPlatforms.NinjaTraders]: !prevData.platform[TradingPlatforms.NinjaTraders],
+                    primaryTradingPlatform: {
+                      ...prevData.primaryTradingPlatform,
+                      [TradingPlatforms.NinjaTraders]: !prevData.primaryTradingPlatform[TradingPlatforms.NinjaTraders],
                     },
                   }))
                 }
               />
               <LabeledCheckBox
                 className={styles.radioButton}
-                name="trading_platform"
+                name="primary_trading_platform"
                 label={TradingPlatforms.Sierrachart}
-                checked={data.platform[TradingPlatforms.Sierrachart]}
+                checked={data.primaryTradingPlatform[TradingPlatforms.Sierrachart]}
                 onChange={(e) =>
                   setData((prevData) => ({
                     ...prevData,
-                    platform: {
-                      ...prevData.platform,
-                      [TradingPlatforms.Sierrachart]: !prevData.platform[TradingPlatforms.Sierrachart],
+                    primaryTradingPlatform: {
+                      ...prevData.primaryTradingPlatform,
+                      [TradingPlatforms.Sierrachart]: !prevData.primaryTradingPlatform[TradingPlatforms.Sierrachart],
                     },
                   }))
                 }
               />
             </div>
+
+            <div className={styles.toolsOption}>
+              <p className={styles.description}>Secondary trading platform:</p>
+              <LabeledCheckBox
+                className={styles.radioButton}
+                name="secondary_trading_platform"
+                label={TradingPlatforms.TradingView}
+                checked={data.secondaryTradingPlatform[TradingPlatforms.TradingView]}
+                onChange={(e) => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    secondaryTradingPlatform: {
+                      ...prevData.secondaryTradingPlatform,
+                      [TradingPlatforms.TradingView]: !prevData.secondaryTradingPlatform[TradingPlatforms.TradingView],
+                    },
+                  }));
+                }}
+              />
+              <LabeledCheckBox
+                className={styles.radioButton}
+                name="secondary_trading_platform"
+                label={TradingPlatforms.ThinkOrSwim}
+                checked={data.secondaryTradingPlatform[TradingPlatforms.ThinkOrSwim]}
+                onChange={(e) =>
+                  setData((prevData) => ({
+                    ...prevData,
+                    secondaryTradingPlatform: {
+                      ...prevData.secondaryTradingPlatform,
+                      [TradingPlatforms.ThinkOrSwim]: !prevData.secondaryTradingPlatform[TradingPlatforms.ThinkOrSwim],
+                    },
+                  }))
+                }
+              />
+              <LabeledCheckBox
+                className={styles.radioButton}
+                name="secondary_trading_platform"
+                label={TradingPlatforms.NinjaTraders}
+                checked={data.secondaryTradingPlatform[TradingPlatforms.NinjaTraders]}
+                onChange={(e) =>
+                  setData((prevData) => ({
+                    ...prevData,
+                    secondaryTradingPlatform: {
+                      ...prevData.secondaryTradingPlatform,
+                      [TradingPlatforms.NinjaTraders]:
+                        !prevData.secondaryTradingPlatform[TradingPlatforms.NinjaTraders],
+                    },
+                  }))
+                }
+              />
+              <LabeledCheckBox
+                className={styles.radioButton}
+                name="secondary_trading_platform"
+                label={TradingPlatforms.Sierrachart}
+                checked={data.secondaryTradingPlatform[TradingPlatforms.Sierrachart]}
+                onChange={(e) =>
+                  setData((prevData) => ({
+                    ...prevData,
+                    secondaryTradingPlatform: {
+                      ...prevData.secondaryTradingPlatform,
+                      [TradingPlatforms.Sierrachart]: !prevData.secondaryTradingPlatform[TradingPlatforms.Sierrachart],
+                    },
+                  }))
+                }
+              />
+            </div>
+
+            <div className={styles.toolsOption}>
+              <p className={styles.description}>* No. of instruments:</p>
+              {error.instruments && <p className={styles.error}>{error.instruments}</p>}
+              <LabeledRadioButton
+                className={styles.radioButton}
+                name="instruments"
+                label={"1"}
+                value={"1"}
+                groupValue={data.instruments}
+                onChange={(e) => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    instruments: e.target.value,
+                  }));
+                  setError((prev) => ({
+                    ...prev,
+                    instruments: "",
+                  }));
+                }}
+              />
+              <LabeledRadioButton
+                className={styles.radioButton}
+                name="instruments"
+                label={"3"}
+                value={"3"}
+                groupValue={data.instruments}
+                onChange={(e) => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    instruments: e.target.value,
+                  }));
+                  setError((prev) => ({
+                    ...prev,
+                    instruments: "",
+                  }));
+                }}
+              />
+              <LabeledRadioButton
+                className={styles.radioButton}
+                name="instruments"
+                label={"6"}
+                value={"6"}
+                groupValue={data.instruments}
+                onChange={(e) => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    instruments: e.target.value,
+                  }));
+                  setError((prev) => ({
+                    ...prev,
+                    instruments: "",
+                  }));
+                }}
+              />
+              <LabeledRadioButton
+                className={styles.radioButton}
+                name="instruments"
+                label={"9"}
+                value={"9"}
+                groupValue={data.instruments}
+                onChange={(e) => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    instruments: e.target.value,
+                  }));
+                  setError((prev) => ({
+                    ...prev,
+                    instruments: "",
+                  }));
+                }}
+              />
+              <LabeledRadioButton
+                className={styles.radioButton}
+                name="instruments"
+                label={"Unlimited"}
+                value={"Unlimited"}
+                groupValue={data.instruments}
+                onChange={(e) => {
+                  setData((prevData) => ({
+                    ...prevData,
+                    instruments: e.target.value,
+                  }));
+                  setError((prev) => ({
+                    ...prev,
+                    instruments: "",
+                  }));
+                }}
+              />
+            </div>
+
             <div className={styles.span2}>
               <Button className={styles.button} type="submit">
                 Subscribe

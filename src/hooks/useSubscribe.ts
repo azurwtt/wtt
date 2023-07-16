@@ -18,12 +18,20 @@ export const useSubscribe = () => {
     phone: "",
     machinId: "",
     provider: "",
-    platform: {
+    username: "",
+    primaryTradingPlatform: {
       [TradingPlatforms.TradingView]: false,
       [TradingPlatforms.ThinkOrSwim]: false,
       [TradingPlatforms.NinjaTraders]: false,
       [TradingPlatforms.Sierrachart]: false,
     },
+    secondaryTradingPlatform: {
+      [TradingPlatforms.TradingView]: false,
+      [TradingPlatforms.ThinkOrSwim]: false,
+      [TradingPlatforms.NinjaTraders]: false,
+      [TradingPlatforms.Sierrachart]: false,
+    },
+    instruments: "1",
     planId: "",
   });
 
@@ -39,7 +47,7 @@ export const useSubscribe = () => {
     phone: "",
     machinId: "",
     provider: "",
-    platform: "",
+    instruments: "",
     planId: "",
   });
 
@@ -58,7 +66,6 @@ export const useSubscribe = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (
-      Object.values(data.platform).every((value) => !value) ||
       !data.firstName ||
       !data.lastName ||
       !data.address ||
@@ -121,12 +128,6 @@ export const useSubscribe = () => {
         setError((prev) => ({
           ...prev,
           phone: "Phone is required",
-        }));
-      }
-      if (Object.values(data.platform).every((value) => !value)) {
-        setError((prev) => ({
-          ...prev,
-          platform: "Trading Platform is required",
         }));
       }
     } else {
